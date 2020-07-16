@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    active: development
+
+
+devtools:
+  restart:
+  #热部署生效
+  enabled: true
+  #设置重启的目录
+  additional-paths: resources/**,static/**,templates/**
+  #该目录下的内容修改不重启
+  exclude: data/**
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml
+
+---
+spring:
+  profiles: development
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/users?serverTimezone=UTC
+    username: root
+    password: root
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  banner:
+    location: classpath:banner.txt
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  resources:
+    static-locations: classpath:/static
+
+
+---
+spring:
+  profiles: product
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.105.84.63:3306/users?serverTimezone=UTC
+    username: root
+    password: root
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  banner:
+    location: classpath:banner.txt
+  server:
+    port: 8800

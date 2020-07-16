@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	<meta name="viewport" content="width=720,initial-scale=0.5, minimum-scale=0.1, maximum-scale=1.0, user-scalable=yes"/>
+	<script type='text/javascript' src='/js/jquery-1.11.1.min.js'></script>
+	<script type='text/javascript' src='/js/jquery.particleground.js'></script>
+	<script src="/js/clickScript.js"></script>
+	<title>Gusang</title>
+	<style>
+		body {
+			/* tip：颜色早晚变化~*/
+			background-color: slategrey;
+			/*background-color: #6d7278;*/
+		}
+
+		#container {
+			text-align: center;
+			margin: 0;
+			height: 1500px;
+			width: 100%;
+		}
+
+
+		.navigation-head {
+			position: absolute;
+			width: 500px;
+			top: 0%;
+			text-align: center;
+			left: 39%;
+			transition: top 1s;
+			-moz-transition: top 1s;
+			-webkit-transition: top 1s;
+			-o-transition: top 1s;
+		}
+		.top3{
+			top:4%;
+		}
+		.navigation-head span {
+			margin: 20px;
+			font-size: 120%;
+			font-weight: 300;
+			color: black;
+		}
+
+		.navigation-head span:hover {
+			padding: 10px;
+			background-color: darkslategrey;
+			border-radius: 5px;
+		}
+
+		.welcomeText {
+			color: black;
+			font-size: 200%;
+			font-weight: 300;
+			margin-top: 20px;
+			margin-bottom: 55px;
+		}
+
+		.navigation-head a {
+			text-decoration: none;
+			color: black;
+		}
+
+		font {
+			font-family: "bodoni mt black"
+		}
+		.home{
+			text-align: left;
+			position: absolute;
+			width: 33%;
+			font-weight: 400;
+			top: 32%;
+			left: 38%;
+			transition: top 1s;
+			-moz-transition: top 1s;
+			-webkit-transition: top 1s;
+			-o-transition: top 1s;
+			word-wrap: break-word;
+			letter-spacing: 1px;
+		}
+		.left33{
+			left:33%;
+		}
+		.LatestArticle{
+		}
+
+		.Recommendation{
+			margin-top: 30px;
+			margin-bottom: 50px;
+		}
+		.Archive{
+			text-align: left;
+			position: absolute;
+			width: 30%;
+			font-weight: 300;
+			top: 32%;
+			left:36%;
+			transition: top 1s;
+			-moz-transition: top 1s;
+			-webkit-transition: top 1s;
+			-o-transition: top 1s;
+		}
+		.DetailedArticle{
+			text-align: left;
+			position: absolute;
+			width: 40%;
+			font-weight: 300;
+			top: 32%;
+			left:36%;
+			transition: top 1s;
+			-moz-transition: top 1s;
+			-webkit-transition: top 1s;
+			-o-transition: top 1s;
+			word-wrap: break-word;
+			letter-spacing: 1px;
+		}
+		.archiveTable{
+			border-color: black;
+			margin: 10px;
+			table-layout: fixed;
+			width: 100%;
+			padding: 10px;
+			font-size: 90%;
+			letter-spacing: 1px;
+		}
+		.content{
+			max-width: 80%;
+			word-wrap:break-word;
+		}
+		.archiveTable tr{
+			height: 8%;
+		}
+		.top25{
+			top:25%;
+		}
+		.left38{
+			left:38%;
+		}
+		.left37{
+			left:37%;
+		}
+		.title{
+			font-size: 17px;
+			color: #343570;
+			font-weight: 400;
+			text-decoration: none;
+		}
+		#QuoteTable{
+			border-collapse:separate;
+			border-spacing:0px 25px;
+		}
+		.aboutMe {
+			word-break: break-word;
+			font-weight: 300;
+			text-align: left;
+			letter-spacing: 1px;
+			font-style:italic;
+		}
+		.left30{
+			left: 30%;
+		}
+		.introduction {
+			position: absolute;
+			top: 25%;
+			width: 10%;
+			height: 40%;
+			transition: left 1s;
+			-moz-transition: left 1s;
+			-webkit-transition: left 1s;
+			-o-transition: left 1s;
+		}
+		.contactMe {
+			position: absolute;
+			top:25%;
+			width: 7%;
+			transition: left 1s;
+			-moz-transition: left 1s;
+			-webkit-transition: left 1s;
+			-o-transition: left 1s;
+		}
+		.games {
+			position: absolute;
+			left:55%;
+			width: 7%;
+			transition: top 1s;
+			-moz-transition: top 1s;
+			-webkit-transition: top 1s;
+			-o-transition: top 1s;
+		}
+		.left42{
+			left:40%;
+		}
+		.left50{
+			left:55%;
+		}
+		.left55{
+			left:58%;
+		}
+		.top45{
+			top:43%;
+		}
+		.top50{
+			top:48%;
+		}
+		a:hover{
+			color: #004974;
+		}
+		@media screen and (max-width: 1600px) {
+			.home,.Archive,.DetailedArticle,.introduction{
+				width: 45%;
+			}
+			.introduction {
+				width: 20%;
+			}
+			.contactMe,.games{
+				width: 15%;
+			}
+		}
+		@media screen and (max-width: 850px) {
+
+			.top25{
+				top:20%;
+			}
+
+			.home,.Archive,.DetailedArticle{
+				width: 70%;
+				left: 20%;
+			}
+			.introduction{
+				width: 21%;
+			}
+			.contactMe,.games{
+				width: 17%;
+			}
+			.navigation-head{
+				left:20%;
+			}
+			.left37{
+				left:22%;
+			}
+			.left42{
+				left:27%;
+			}
+			.left55{
+				left:67%;
+			}
+			.left50{
+				left:63%;
+			}
+			.games{
+				left:63%;
+			}
+		}
+		@media screen and (max-width: 850px) and (min-height: 2000px){
+			.top25{
+				top:10%;
+			}
+		}
+	</style>
+	<script>
+		$(function() {
+			var config = {
+				minSpeedX: 0.1,
+				maxSpeedX: 0.3,
+				minSpeedY: 0.1,
+				maxSpeedY: 0.3,
+				directionX: 'center', // 'center', 'left' or 'right'. 'center' = dots bounce off edges
+				directionY: 'center', // 'center', 'up' or 'down'. 'center' = dots bounce off edges
+				density: 12000, // How manycs will be generated: one particle every n pixels
+				dotColor: '#5500ff',
+				lineColor: '#666666',
+				particleRadius: 3, // Dot size
+				lineWidth: 1,
+				curvedLines: false,
+				proximity: 100, // How close two dots need to be before they join
+				parallax: true,
+				parallaxMultiplier: 10, // The lower the number, the more extreme the parallax effect
+			};
+			$('#container').particleground(config);
+			loadLatestArticle();
+			loadRecommendation();
+		});
+
+		function slide() {
+			$('.navigation-head').removeClass('top3');
+			setTimeout(function () {
+				$('.navigation-head').addClass('top3');
+			},0);
+
+			$('.home').addClass('top25');
+			$('.home').removeClass('top25');
+			setTimeout(function () {
+				$('.home').removeClass('top25');
+				$('.home').addClass('top25');
+			},0);
+
+		}
+		function loadLatestArticle(){
+			let articleDiv= $('.LatestArticle');
+			let text = '';
+			$.ajax({
+				url:"home/quotes",
+				type:"post",
+				dataType: 'json',
+				async: false,
+				success:function (data) {
+					for(let i=0;i<data.length;i++){
+						let content=data[i].content;
+						let author=data[i].author;
+						let href=data[i].href;
+						text += "<tr><td>" +
+								"<a class='title' href='"+href+"'>" +
+								"<span style='letter-spacing: 1px;word-wrap:break-word;font-style:italic; color: #56238b'>"+content+"</span></a><br>"
+								+"<div style='text-align: right;letter-spacing: 1px;color:#74458b; font-style:italic;'>---"+author+"</div>"
+								+"</td></tr>";
+					}
+					articleDiv.html('<div style="font-size: 19px;margin-bottom: 10px;color: #74458b;font-style:italic;">鸡汤</div><hr color= #5B6378 size = 1 />'
+							+'<table id="QuoteTable">'+text+"</table>")
+				}
+			});
+		}
+		function loadRecommendation(){
+			let RecommendationDiv=$('.Recommendation');
+			let text = '';
+			$.ajax({
+				url:"home/recommendation",
+				type:"post",
+				dataType: 'json',
+				async: false,
+				success:function (data) {
+					for(let i=0;i<data.length;i++){
+						let content=data[i].content;
+						let href=data[i].href;
+						text += "<tr><td>" +
+								"<a class='title' href='"+href+"'>" +
+								"<span style='letter-spacing: 1px;word-wrap:break-word;font-style:italic;'>"+content+"</span></a>"
+								+"</td></tr>";
+					}
+					RecommendationDiv.html("<div style=\"font-size: 19px;margin-bottom: 10px;color: #495878;font-style:italic;\">推荐</div><hr color= #5B6378 size = 1 />"
+							+'<table style="border-collapse: separate;border-spacing: 0px 13px">'+text+"</table>")
+				}
+			});
+		}
+		function loadArchive() {
+			DisplayArchive();
+			let finalResult='';
+			let art='';
+			let ArchiveDiv=$('.Archive');
+			$.ajax({
+				url:"getArchive",
+				type:"post",
+				dataType: 'json',
+				async: false,    //这里异步请求会导致finalResult在之后的取值前先被以‘’渲染到页面
+				success:function (data) {
+					let result='';
+					for(let i=0;i<data.length;i++){
+						let type_name = data[i].type_name;
+						let type='<tr><td><span style="font-size: 20px;font-weight: 400;font-style:italic;">'+type_name+'<hr color= #5B6378 size = 2 />'+'</span></td></tr>';
+						$.ajax({
+							url:"getArticle",
+							type:"post",
+							data:'type_name='+type_name,
+							dataType: 'json',
+							async: false,
+							success:function (arts) {
+								for(let j=0;j<arts.length;j++){
+									let article_name=arts[j].article_name;
+									let time = getTime(arts[j].add_time.year,arts[j].add_time.month,arts[j].add_time.date);
+									let article_id=arts[j].article_id;
+									let views=arts[j].views;
+									let content=arts[j].content;
+									// content=transferContent(content);
+									art = art + "<tr style='height: auto'><td><a href='javascript:void(0)' class='title' onclick=\"openDetailedArticle('" + article_id + "','" + views + "')\"> "+article_name+"  "+" </a></td></tr>";
+									content=simplifyContent(content);
+									art = art + "<tr><td style='word-wrap: break-word;'>"+content+"</td></tr>";
+									art += "<tr><td align='right'><span style='font-size: 13px'>" + time+" views:"+views+"</span></td></tr>";
+									art += "<tr><td><hr color= #666D78 size=1 /></td></tr>";
+								}
+							},
+							error:function () {
+								console.log("gain arts wrong");
+							}
+						});
+						result = '<table class="archiveTable">'+ type + art + '</table>';
+						// console.log("result = "+result);
+						art = '';
+						finalResult = finalResult + result;
+					}
+				},
+				error:function () {
+					console.log("failed to gain archive");
+				}
+			});
+			ArchiveDiv.html(finalResult);
+		}
+		function openDetailedArticle(article_id,views) {
+			$('.Archive').css('display','none');
+			$('.DetailedArticle').css('display','');
+			let detailedArticleDiv=$('.DetailedArticle');
+			detailedArticleDiv.removeClass('top25');
+			setTimeout(function () {
+				detailedArticleDiv.addClass('top25');
+			},0);
+			$.ajax({
+				url:"getArticleById",
+				type:"post",
+				data:{"article_id":article_id,"views":views},
+				dataType: 'json',
+				async: false,
+				success:function (art){
+					let content = transferContent(art.content);
+					let time = getTime(art.add_time.year,art.add_time.month,art.add_time.date);
+					let artName="<span style='font-size: 17px;color: midnightblue;font-weight: normal'>"+art.article_name+"</span>";
+					let pre="<div style='text-align: right'><span style='font-size: 16px;color: midnightblue'>"+time+" views: "+views+"</span></div><br>";
+					detailedArticleDiv.html("<div class='content'>"+artName+pre+"<span style='white-space: pre-wrap'>"+content+"</span></div>");
+				}
+			});
+		}
+		function transferContent(content) {
+			content=content.replace(/\u200B/g,'');
+			content=content.replace(/&/g, '&amp;');
+			//这里要先转义< >再转义\r?\n，否则会把<br/>转义掉~~
+			content=content.replace(/</g, '&lt;');
+			content=content.replace(/>/g, '&gt;');
+			content=content.replace(/\r?\n/g,"<br />");    //vital!~ 将回车换行替换为<br/>
+			return content;
+		}
+		function getTime(year,month,day){
+			let time='';
+			time = (Number(year)+1900).toString() +"-"+ (Number(month)+1).toString()+ "-" + (Number(day)).toString();
+			return time;
+		}
+		function simplifyContent(content) {
+			if(content.length>=84){
+				content=content.substr(0,84);
+				content += '...';
+			}
+			return content;
+		}
+		function DisplayArchive() {
+			$('.home').css('display','none');
+			$('.DetailedArticle').css('display','none');
+			$('.aboutMe').css('display','none');
+			$('.Archive').css('display','');
+			$('.Archive').removeClass('top25');
+			setTimeout(function () {
+				$('.Archive').addClass('top25');
+			},0);
+		}
+		function DisplayHome() {
+			$('.DetailedArticle').css('display','none');
+			$('.aboutMe').css('display','none');
+			$('.Archive').css('display','none');
+			$('.home').css('display','');
+
+			$('.home').addClass('top25');
+			$('.home').removeClass('top25');
+			setTimeout(function () {
+				$('.home').removeClass('top25');
+				$('.home').addClass('top25');
+			},0);
+		}
+		function DisplayAboutMe(){
+			$('.home').css('display','none');
+			$('.DetailedArticle').css('display','none');
+			$('.Archive').css('display','none');
+			$('.aboutMe').css('display','');
+
+			// let home = $('.home');
+			let introduction = $('.introduction');
+			let contactMe = $('.contactMe');
+			let games = $('.games');
+			let introductionContent = '';
+			$.ajax({
+				url: "home/introduction",
+				type: "post",
+				dataType: "text",
+				async: false,
+				success:function (data) {
+					introductionContent=transferContent(data);
+				}
+			});
+			introduction.html("<span style='font-size: 120%;font-weight: 400'>简介</span><hr color= #5B6378 size = 1 />"
+					+"<span style='line-height: 17px'>"+introductionContent+"</span>");
+
+			let contactMeContent = '<span style="font-size: 100%; + font-weight: 400; color: black ;line-height: 17px">'
+					+'<a href="tencent://AddContact/?fromId=30&fromSubId=1&subcmd=all&uin=1550315984" style="text-decoration: none; color: black" >QQ:1550315984</a><br>'
+					+ '<a href="https://blog.csdn.net/weixin_43957537" style="text-decoration: none; color: black" >CSDN:关注我</a>'
+					+'</span>';
+			contactMe.html("<span style='font-size: 120%;font-weight: 400'>联系我</span><hr color= #5B6378 size = 1 />"+contactMeContent);
+
+			let gamesContent = '<span style="font-size: 100%; + font-weight: 400; color: black ;line-height: 80%">'
+					+'<a href="games/greedySnakeDouble1" style="text-decoration: none; color: black" >贪吃蛇(改)</a></span>';
+
+			games.html("<span style='font-size: 120%;font-weight: 400'>js小游戏</span><hr color= #5B6378 size = 1 />"+gamesContent);
+			//transition animation
+			introduction.addClass('left37');
+			introduction.removeClass('left42');
+			setTimeout(function () {
+				introduction.removeClass('left37');
+				//当无法覆盖原来的left时，可以单独原始left为单独的一个class加上去，到后期要改变left来触发transition动画的时候再remove掉再add新的left的class！！~~~我真是个机灵鬼~~~~
+				introduction.addClass('left42');
+			},0);
+			contactMe.addClass('left55');
+			contactMe.removeClass('left50');
+			setTimeout(function () {
+				contactMe.removeClass('left55');
+				contactMe.addClass('left50');
+			},0);
+			games.addClass('top50');
+			games.removeClass('top45');
+			setTimeout(function () {
+				games.removeClass('top50');
+				games.addClass('top45');
+			},0);
+		}
+	</script>
+</head>
+<body onload="slide()">
+<div id="container">
+
+	<div class="navigation-head">
+		<div class="welcomeText">Welcome to Gusang' blog~ </div>
+		<a href="javascript:void(0)" onclick="DisplayHome()">
+			<span>Home</span>
+		</a>
+		<a href="javascript:void(0)" onclick="loadArchive()">
+			<span>Archive</span>
+		</a>
+		<a href="javascript:void(0)" onclick="DisplayAboutMe()">
+			<span>About me</span>
+		</a>
+
+	</div>
+
+	<div class="home">
+		<div class="Recommendation"></div>
+		<div class="LatestArticle"></div>
+	</div>
+	<div class="Archive" style="display: none"></div>
+	<div class="DetailedArticle" style="display: none"></div>
+	<div class="aboutMe" style="display: none">
+		<div class="introduction"></div>
+		<div class="contactMe"></div>
+		<div class="games"></div>
+		</div>
+	</div>
+<footer>
+	<div class="copy_right" style="text-align:center; top:1500px">
+		<p style="font-size:12px;color:black;margin:20px 0 15px 0;">
+			©&nbsp;2019&nbsp;Gusang&nbsp;&nbsp;
+			<a href="http://beian.miit.gov.cn/" target="_blank" style="color:black;">苏ICP备20001141号</a>
+		</p>
+	</div>
+</footer>
+
+</div>
+</body>
+
+</html>

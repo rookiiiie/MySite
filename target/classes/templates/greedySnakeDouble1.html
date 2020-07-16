@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <title>贪吃蛇</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: thistle;
+        }
+
+        .main {
+            width: 1150px;
+            height: 400px;
+            margin: 50px auto;
+            border-radius: 1em;
+        }
+
+        .btn {
+            width: 80px;
+            height: auto;
+            margin: 10px;
+        }
+        .map {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            background:rgba(119, 50, 108, 0.288);
+            text-align: center;
+            float:left;
+        }
+        #triangle-up {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid darkgreen;
+        }
+        .players{
+            position: relative;
+            left: 250px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 25px;
+        }
+		.rule{
+		    float: left;
+			width: 250px;
+		    margin-left: 20px;
+		}
+		.rule p{
+			  word-wrap: break-word;
+			  word-break: break-all;
+			  overflow: hidden;
+		}
+        font{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        设置豆子个数:<input id="foodNum" type="text" value="30">
+        设置游戏时长:<input id="time" type="text" value="60">秒
+        <button class="btn" id="begin">开始</button>
+        <button class="btn" id="restart" style="display: none;">重新开始</button>
+        <br>
+        <div class="players">
+            玩家一<span id="score1" style="text-align: center;">得分：3</span>
+            <span  style="color:brown; text-align: center;"> <strong>:</strong> </span>
+            玩家二<span id="score2" style="text-align: center;">得分：3</span>
+        </div>
+        <div id="map" class="map"></div>
+        <div class="rule">
+            <span style="font-size: 25px;">游戏规则：</span>
+            <p>1.玩家一操作键盘wsad键控制左边蛇，玩家二操作键盘上下左右控制右边的蛇</p>
+			<p>2.地图上圆形的表示豆子，三角形的表示加速豆(可以加速5秒，效果不可叠加)</p>
+			<p>3.玩家之间可以互相吃身体,<span style="color:deeppink">但是不能直接吃头</span></p>
+            <p>4.会导致游戏结束的情况：A.游戏时长到了 B.两个玩家头碰头 C.2个玩家都撞墙了</p>
+            <p>PS:按住空格也可以暂时暂停~</p>
+			<a href="https://www.jb51.net/article/154869.htm" style="color: deeppink;">参考于：点这里打开网址</a>
+        </div>
+    </div>
+    <script src="/js/greedySnakeDouble1.js" > </script>
+</body>
+</html>

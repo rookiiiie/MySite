@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.MySiteTest.dao.ArticleDao">
+    <!--    映射数据库中的列和Mapper接口中的属性-->
+    <resultMap id="articleResultMap" type="article">
+        <id property="article_id" column="article_id" javaType="int" jdbcType="INTEGER"/>
+        <result property="article_name" column="article_name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="content" column="content"/>
+<!--        typeHandler="org.apache.ibatis.type.BlobTypeHandler"-->
+        <result property="add_time" column="add_time" javaType="Date" jdbcType="DATE"/>
+        <result property="views" column="views" javaType="int" jdbcType="INTEGER"/>
+        <result property="type_name" column="type_name" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="SelectByTypeName" parameterType="type" resultType="article" flushCache="true">
+        select * from article where type_name = #{type_name};
+    </select>
+    <select id="SelectByArticleId" parameterType="Integer" resultMap="articleResultMap" flushCache="true">
+        select * from article where article_id = #{article_id};
+    </select>
+    <select id="SelectByArticleName" parameterType="String" resultType="article" flushCache="true">
+        select * from article where article_name = #{article_name};
+    </select>
+    <update id="UpdateArticleView" parameterType="Integer" flushCache="true">
+        update article set views = #{views} where article_id=#{article_id};
+    </update>
+    <insert id="saveArticle" parameterType="article" flushCache="true">
+        insert into article(article_name, content, add_time, views, type_name) values (#{article_name},#{content},#{add_time},#{views},#{type_name});
+    </insert>
+    <delete id="deleteByArticleNameAndTypeName" parameterType="String" flushCache="true">
+        delete from article where article_name = #{article_name} and type_name = #{type_name};
+    </delete>
+</mapper>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mySite</title>
+    <script>
+        msg= '[[${msg}]]';
+        console.log('msg = '+msg);
+        if(msg!==''){
+            window.alert(msg);
+            window.location="/pan";
+        }
+
+        function checkForm() {
+            const name=document.querySelector(".name");
+            const password=document.querySelector(".password");
+            const option=document.querySelector('select');
+            if(name.value===''||password.value===''){
+                window.alert("用户名或密码不能为空！");
+            }else{
+                this.loginForm.action="/pan/"+option.value+"/Login";
+                document.querySelector('#type').value=option.value;
+                this.loginForm.submit();
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="container">
+    <table>
+        <form name="loginForm" method="post">
+            <tr><td><label>用户名:</label></td><td><input class="name" name="name" type="text"></td></tr>
+            <tr><td><label>密码: </label></td><td><input class="password" name="password" type="password"></td></tr>
+            <tr><td><label>type: </label></td><td>
+                <select>
+                    <option value="files">file</option>
+                    <option value="articles">article</option>
+                    <option value="home">home</option>
+                </select></td></tr>
+                <input id="type" name="type" type="hidden"/>
+            <tr><td colspan="2"><button onclick="checkForm()">登录</button></td></tr>
+        </form>
+    </table>
+</div>
+</body>
+</html>

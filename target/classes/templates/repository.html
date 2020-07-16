@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html" charset="utf-8">
+    <style>
+        body{
+            background: lightpink;
+        }
+        .title{
+            font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+            color: deeppink;
+        }
+        button{
+            font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+            background-color: #d79ecb;
+            border: 0px solid #d7a0cd;
+            border-radius: 1em;
+        }
+        button:hover{
+            background-color: #b96ebc;
+        }
+        /* table */
+        table{
+            width: 600px;
+            border: 5px solid #f5acdb;
+            border-radius: 1em;
+            background: #f5bad1;
+        }
+        table th{
+            text-align: left;
+        }
+        table .content:hover{
+            background: #d7aeca;
+
+        }
+        .file {
+            position: relative;
+            display:  inline-flex;
+            background: #d79ecb;
+            border: 0px solid #99D3F5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: black;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 20px;
+            border-radius: 1em;
+        }
+        .file input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .file:hover {
+            background: #b96ebc;
+            border-color: #78C3F3;
+            color: #004974;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        msg= '[[${msg}]]';
+        console.log('msg = '+msg);
+        if(msg!=='')
+            window.alert(msg);
+        function upload() {
+            const inputFile=document.querySelector('.inputFile');
+            if(inputFile.value!==''){
+                //interceptor fileSize
+                let maxSize=100*1024*1024;
+                let FileSize=inputFile.files[0].size;
+                if(FileSize>maxSize) {
+                    alert("请上传小于100MB的文件！");
+                    return;
+                }
+                }else{
+                    alert("未选中任何文件！");
+                    return;
+                }
+            this.form1.action="uploadFile";
+            this.form1.enctype="multipart/form-data";
+            this.form1.submit();
+        }
+        window.onload=function(){      //after the page load completely,this function will execute!
+            const names = '[[${filename}]]'.split(',');
+            // const dates = '[[${dates}]]'.split(',');
+            const sizes='[[${sizes}]]'.split(',');
+            const table=document.querySelector('table');
+            for(let i=0; i<names.length; i++){
+                let tr= document.createElement('tr');
+                tr.className='content';
+                let td1=document.createElement('td');
+                let button1=document.createElement('button');
+                let Form1=document.createElement('form');
+                let input1=document.createElement('input');
+                let button2=document.createElement('button');
+                let Form2=document.createElement('form');
+                let input2=document.createElement('input');
+                let td2=document.createElement("td");
+                let td3=document.createElement("td");
+                let td4=document.createElement("td");
+                td1.textContent=names[i].toString();
+                td2.textContent=sizes[i].toString();
+                button1.textContent="下载";
+                input1.type='hidden';
+                input1.value=td1.textContent;
+                input1.name='filename';
+                button1.onclick=function(){
+                    Form1.method='post';
+                    Form1.action='downloadFile';
+                    Form1.submit();
+                }
+                Form1.appendChild(input1);
+                Form1.appendChild(button1);
+                td3.appendChild(Form1);
+                button2.textContent="删除";
+                input2.type='hidden';
+                input2.value=td1.textContent;
+                input2.name='filename';
+                button2.onclick=function(){
+                    Form2.method='post';
+                    Form2.action='deleteFile';
+                    Form2.submit();
+                }
+                Form2.appendChild(input2);
+                Form2.appendChild(button2);
+                td4.appendChild(Form2);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                table.appendChild(tr);
+            }
+        }
+    </script>
+</head>
+<body>
+<script>
+
+    (function(){
+        var a_idx = 0;
+        document.onclick = function(event){
+            var a = new Array("👻来拉？","🐶给爷爬","🐭嘤嘤嘤","💩奥里给！~干了","💨老屁王了");
+            var heart = document.createElement("b");	//bold粗体~
+            heart.onselectstart = new Function('event.returnValue=false');	//不可选中
+
+            document.body.appendChild(heart).innerHTML = a[a_idx];		//在heart后面加上字~
+            a_idx = (a_idx + 1) % a.length;  //循环遍历下一个字符串
+            heart.style.cssText = "position: fixed;left:-100%;";  //定义heart的css
+
+            var f = 16,
+                x = event.clientX - f / 2, // left:
+                y = event.clientY - f, // top:
+                c = randomColor(),  // 随机颜色
+                a = 1, 				// 不透明度
+                s = 1.2; 			// transform:scale  缩放
+
+            var timer = setInterval(function(){		//setInterval(function,time)      -->>每隔time执行function
+                if(a <= 0){    //这里是通过逐渐降低opacity（不透明度）属性来控制函数循环终点
+                    document.body.removeChild(heart);
+                    clearInterval(timer);
+                }else{
+                    heart.style.cssText = "font-size:16px;cursor: default;position: fixed;color:" + c + ";left:" + x + "px;top:" + y + "px;opacity:" + a + ";transform:scale(" + s + ");";
+                    //每个循环改变css参数~
+                    y-=0.3;
+                    x++;
+                    a -= 0.016;
+                    s -= 0.002;
+                }
+            },15)
+
+        }
+        // 返回随机颜色
+        function randomColor() {
+            return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";     //~~符号它被用作一个更快的替代 Math.floor() 。
+        }
+    }());
+</script>
+<h1 class="title">家乡的网盘</h1>
+<form name="form1" method="post">
+    <a href="javascript:;" class="file">选择文件
+        <input type="file" name="file" class="inputFile">
+    </a>
+    <button class="file" onclick="upload()">上传</button>
+</form>
+<br>
+<table>
+    <tr>
+        <th>名称</th>
+<!--        <th>date</th>-->
+        <th>大小</th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+</body>
+</html>
