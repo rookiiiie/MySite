@@ -1,2 +1,2 @@
 # MySite
-It's a breif private blog site waiting to be perfected.
+It's a breif private blog site realized by javascript and java springboot
